@@ -157,7 +157,6 @@
       justify-content: center;
       gap: 2rem;
       padding: 2rem 1rem;
-      background-color: var(--dark-bg);
       color: var(--light-text);
       flex-wrap: wrap;
       position: relative;
@@ -213,7 +212,7 @@
     }
 
     .form-container {
-      background-color: #ffffff;
+      background-color: #a6a9aa;
       padding: 2.5rem;
       border-radius: var(--border-radius);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
@@ -221,11 +220,11 @@
     }
 
     .form-container h2 {
-      color: var(--primary-color);
-      margin-bottom: 1.8rem;
-      font-weight: 600;
-      text-align: center;
-    }
+    color: #9d6000;
+    margin-bottom: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+}
 
     .form-container input,
     .form-container select,
@@ -271,20 +270,18 @@
       margin-bottom: 0.5rem;
       cursor: pointer;
     }
-
-    .form-container .disclaimer,
-    .form-container .terms {
-      font-size: 0.85rem;
-      color: #6c757d;
-      text-align: center;
-      margin-top: 1rem;
-    }
+.form-container .disclaimer, .form-container .terms {
+    font-size: 0.85rem;
+    color: #363737;
+    text-align: center;
+    margin-top: 1rem;
+}
 
     .form-container .terms a {
-      color: var(--primary-color);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
+    color: #a26300;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
 
     .form-container .terms a:hover {
       color: #e08e0b;
@@ -958,14 +955,38 @@
         grid-template-columns: 1fr; /* Stack on mobile */
       }
       .overlay .content-wrapper {
-        padding: 2rem;
+        flex-direction: column !important;
+        padding: 1rem !important;
+        max-width: 98vw;
+        width: 98vw;
+        min-width: 0;
+        box-sizing: border-box;
+        text-align: center;
+      }
+      .overlay .image-side {
+        padding-right: 0 !important;
+        margin-bottom: 1.5rem !important;
+      }
+      .overlay .image-side img {
+        max-width: 90vw;
+        height: auto;
+      }
+      .fill-out-form-container {
+        padding: 0 !important;
       }
     }
+        input.yes {
+    width: 14px;
+}
+input.no {
+    width: 14px;
+}
+
   </style>
 </head>
 <body>
 
-  <nav class="header bg-dark">
+  <nav class="header position-relative overflow-hidden">
     <img class="background" src="backgorund-image.jpg" alt="Background" />
     <div class="header-font text-center highlight-on-hover" title="This section contains important investment information.">
       <img class="logo mb-3" src="logo.png" alt="Logo">
@@ -976,16 +997,17 @@
       <h2 class="fs-4 mt-2">Learn Why Camden Crossing is a Solid Investment Choice</h2>
     </div>
 
-    <div class="learn-more-wrapper d-flex flex-column align-items-center w-100">
+    <div class="learn-more-wrapper d-flex flex-column align-items-center w-100" id="learnMoreWrapper">
       <a id="learnMoreBtn" href="javascript:void(0);" class="btn btn-learn-more px-3 py-1 fs-6 fw-semibold shadow d-inline-flex flex-column align-items-center">
-        <span>Learn More</span>
-        <span class="arrow-animate mt-1">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M12 5v14M12 19l-5-5M12 19l5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
+      <span>Learn More</span>
+      <span class="arrow-animate mt-1">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+      <path d="M12 5v14M12 19l-5-5M12 19l5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      </span>
       </a>
     </div>
+   
     <div class="icon-row d-none" id="icon-row">
       <div class="icon-card">
         <img src="flower.png" alt="Garden Style">
@@ -1021,8 +1043,8 @@
         </select>
         <div class="radio-group">
           <p>Would you like to receive SMS notifications from Elevate Commercial Investment Group?</p>
-          <label><input type="radio" name="sms" value="yes" required /> Yes!</label>
-          <label><input type="radio" name="sms" value="no" /> No. I don’t want to grow my investments</label>
+          <label><input class="yes" type="radio" name="sms" value="yes" required /> Yes!</label>
+          <label><input class="no" type="radio" name="sms" value="no" /> No. I don’t want to grow my investments</label>
         </div>
         <p class="disclaimer">
           By selecting "Yes" above, message and data rates may apply. Message frequency varies and depends on the activity of your reservation. You can opt-out responding STOP at any time.
@@ -1115,7 +1137,7 @@
 
 <section class="team">
   <h2>Meet The Team</h2>
-  <div class="team-members">
+  <div class="team-members">  
     <div class="profile-card">
       <img src="man1.jpg" alt="Jorge Abreu">
       <h3>Jorge Abreu</h3>
@@ -1142,7 +1164,7 @@
     </div>
   </div>
 </section>
-<div class="overlay">
+<div class="overlay" style="overflow-y:auto;">
   <video autoplay muted loop id="bg-video">
     <source src="short clip.mp4" type="video/mp4" />
   </video>
@@ -1195,21 +1217,19 @@
   }
 </script>
 <script>
-  // Show overlay and Home button when Book Now is clicked
+ 
   document.getElementById('bookNowBtn').addEventListener('click', function() {
     document.querySelector('.overlay').classList.add('show');
     document.getElementById('homeBtn').style.display = 'inline-block';
   });
 
-  // Hide overlay when Home button is clicked
   document.getElementById('homeBtn').addEventListener('click', function() {
     document.querySelector('.overlay').classList.remove('show');
     this.style.display = 'none';
   });
 </script>
 <script>
-  // Remove the 10s timeout for overlay show
-  // Show overlay when Book Now is clicked
+
   document.getElementById('bookNowBtn').addEventListener('click', function() {
     document.querySelector('.overlay').classList.add('show');
   });
@@ -1230,7 +1250,6 @@
       var iconRow = document.getElementById('icon-row');
       iconRow.classList.toggle('d-none');
       if (!iconRow.classList.contains('d-none')) {
-        // Scroll only if it's becoming visible
         iconRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     });
@@ -1238,7 +1257,6 @@
     document.getElementById('guideForm').addEventListener('submit', function (e) {
       e.preventDefault();
       alert('Thank you! Your free guide is being sent.');
-      // Optionally, show the overlay after form submission
       document.querySelector('.overlay').classList.add('show');
     });
 
@@ -1254,19 +1272,19 @@
     const nextBtn = document.getElementById('nextImgBtn');
     const viewZoom = document.getElementById('viewZoom');
     const dotsContainer = document.getElementById('carouselDots');
-    const overlay = document.querySelector('.overlay'); // Get the overlay
+    const overlay = document.querySelector('.overlay'); 
 
     function updateCarousel() {
-      carouselImg.style.transform = 'scale(0.95)'; // Slight shrink
-      carouselImg.style.opacity = '0.7'; // Fade out
+      carouselImg.style.transform = 'scale(0.95)';
+      carouselImg.style.opacity = '0.7'; 
       setTimeout(() => {
         carouselImg.src = images[current].src;
         carouselImg.alt = images[current].alt;
-        carouselImg.style.transform = 'scale(1)'; // Scale back in
-        carouselImg.style.opacity = '1'; // Fade in
-      }, 150); // Match this with a transition speed
+        carouselImg.style.transform = 'scale(1)'; 
+        carouselImg.style.opacity = '1'; 
+      }, 150); d
 
-      // Update dots
+   
       Array.from(dotsContainer.children).forEach((dot, idx) => {
         dot.classList.toggle('active', idx === current);
       });
@@ -1290,7 +1308,7 @@
       updateCarousel();
     };
 
-    // Zoom modal logic
+  
     const zoomModal = document.getElementById('zoomModal');
     const zoomImg = document.getElementById('zoomImg');
     const closeZoom = document.getElementById('closeZoom');
@@ -1313,7 +1331,7 @@
       if (e.target === zoomModal) zoomModal.style.display = 'none';
     };
 
-    // Overlay click logic for form overlay
+ 
     overlay.addEventListener('click', function(event) {
       if (event.target === overlay || (!event.target.closest('.content-wrapper') && event.target.tagName !== 'VIDEO')) {
         overlay.classList.remove('show');
@@ -1336,9 +1354,10 @@
 
         alert("✅ Thank you! Your guide will be sent to your email shortly.");
         form.reset();
-        overlay.classList.remove('show'); // Close overlay after submission
+        overlay.classList.remove('show'); 
       });
     });
   </script>
+  
 </body>
 </html>
